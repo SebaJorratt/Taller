@@ -13,16 +13,20 @@ public class Reinas {
 
         // Creación del tablero con filas y columnas
         String[][] tablero = new String[num][num];
-        // Recorrido de filas i
-        for (int i = 0; i < tablero.length; i++) {
-            // Recorrido de columnas j
-            for (int j = 0; j < tablero.length; j++) {
-                // Espacios vacios en cada posición i,j
-                tablero[i][j] = "| |";
+        tablero = rellenaMatriz(tablero, 0, num);
+        tablero = busquedaReinas(tablero, 0, num);
+        impresionMatriz(tablero, 0, num);
+    }
+
+    public static String[][] rellenaMatriz(String[][] matriz, int fila, int num) {
+        // Recorrido de columnas j
+        for (int j = 0; j < num; j++) {
+            matriz[j][fila] = "| |";
+            if (j == num - 1 && fila != num - 1) {
+                matriz = rellenaMatriz(matriz, fila + 1, num);
             }
         }
-        tablero = busquedaReinas(tablero, 0, num);
-        impresionMatriz(tablero);
+        return matriz;
     }
 
     public static String[][] busquedaReinas(String[][] tablero, int fila, int num) {
@@ -64,15 +68,15 @@ public class Reinas {
         return true;
     }
 
-    public static void impresionMatriz(String[][] tablero) {
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                if (j == tablero.length - 1) {
-                    System.out.println(tablero[j][i] + " ");
-                } else {
-                    System.out.print(tablero[j][i] + " , ");
+    public static void impresionMatriz(String[][] tablero, int fila, int num) {
+        for (int j = 0; j < num; j++) {
+            if (j == num - 1) {
+                System.out.println(tablero[j][fila] + " ");
+                if (fila != num - 1) {
+                    impresionMatriz(tablero, fila + 1, num);
                 }
-
+            } else {
+                System.out.print(tablero[j][fila] + " , ");
             }
         }
     }
