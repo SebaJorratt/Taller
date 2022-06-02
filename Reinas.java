@@ -113,14 +113,14 @@ public class Reinas {
 
     public static boolean valido(String[][] tablero, int colum, int fila, int num) {
         // Recorre todas las filas anteriores a la actual
-        for (int y = 0; y < fila; y++) {
+        for (int y = 0; y <= fila; y++) {
             // Verifica en cada fila de la columna si existe alguna reina
             if (tablero[colum][y] == "R") {
                 return false;
             }
         }
         // Recorre todas las columnas anteriores a la actual
-        for (int y = 0; y < colum; y++) {
+        for (int y = 0; y <= colum; y++) {
             if (tablero[y][fila] == "R") {
                 return false;
             }
