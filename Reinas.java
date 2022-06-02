@@ -24,16 +24,7 @@ public class Reinas {
         // Se rellena la matriz con posiciones válidas
         tablero = rellenaMatriz(tablero, 0, num);
         // Se realiza el algoritmo recursivo (bt) para la inserción de reinas
-        tablero = busquedaReinas(tablero, 0, num);
-        // Recorre la matriz e imprime el resultado
-        impresionMatriz(tablero, 0, num);
-
-        // Fin del tiempo ejecucion
-        long fin = System.currentTimeMillis();
-        // Conversion del tiempo total a segundos
-        float tiempo = (float) (fin - inicio) / 1000;
-        System.out.println(" ");
-        System.out.println("Tiempo ejecucion: " + tiempo + " segundos");
+        tablero = busquedaReinas(tablero, 0, num, inicio);
     }
 
     public static String[][] rellenaMatriz(String[][] matriz, int fila, int num) {
@@ -50,7 +41,7 @@ public class Reinas {
         return matriz;
     }
 
-    public static String[][] busquedaReinas(String[][] tablero, int fila, int num) {
+    public static String[][] busquedaReinas(String[][] tablero, int fila, int num, long inicio) {
         // recorrido de cada una de las columnas (variable j)
         for (int j = 0; j < num; j++) {
             // Pregunta si la posición actual es válida
@@ -60,8 +51,12 @@ public class Reinas {
                 // Si la fila es menor al valor N, sigue a la siguiente fila
                 if (fila < num - 1) {
                     // Recursión con la siguiente fila
-                    tablero = busquedaReinas(tablero, fila + 1, num);
+                    tablero = busquedaReinas(tablero, fila + 1, num, inicio);
                 } else {
+                    // Recorre la matriz e imprime el resultado
+                    impresionMatriz(tablero, 0, num);
+                    // Indica el tiempo final
+                    terminarTiempo(inicio);
                     // Retorno del tablero actual como tablero final
                     return tablero;
                 }
@@ -87,6 +82,15 @@ public class Reinas {
         }
         // Si no encuentra, retorna true y luego vacía la posición
         return true;
+    }
+
+    public static void terminarTiempo(long inicio) {
+        // Fin del tiempo ejecucion
+        long fin = System.currentTimeMillis();
+        // Conversion del tiempo total a segundos
+        float tiempo = (float) (fin - inicio) / 1000;
+        System.out.println(" ");
+        System.out.println("Tiempo ejecucion: " + tiempo + " segundos");
     }
 
     public static void impresionMatriz(String[][] tablero, int fila, int num) {
