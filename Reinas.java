@@ -60,14 +60,15 @@ public class Reinas {
                     // Retorno del tablero actual como tablero final
                     return tablero;
                 }
-            }
-            // Revisa si no es la ultima fila
-            if (fila < num - 1) {
-                // Si la fila siguiente contiene reinas insertadas, no vacía la posición
-                if (verificador(tablero, fila + 1, num)) {
-                    tablero[j][fila] = " ";
+                // Revisa si no es la ultima fila
+                if (fila < num - 1) {
+                    // Si la fila siguiente contiene reinas insertadas, no vacía la posición
+                    if (verificador(tablero, fila + 1, num)) {
+                        tablero[j][fila] = " ";
+                    }
                 }
             }
+
         }
         // Return final
         return tablero;
